@@ -23,6 +23,18 @@ function wwd_add_assets() {
 }
 add_action('wp_enqueue_scripts', 'wwd_add_assets');
 
+$post_types = array(
+    array(
+        "name" => "layout",
+        "label" => "Layout",
+        "plural" => "Layouts"
+    ),
+    array(
+        "name" => "apartment",
+        "label" => "Apartment",
+        "plural" => "Apartments"
+    )
+);
 
 require_once(plugin_dir_path(__FILE__) . '/library/wwd-custom-layout-type.php');
 
