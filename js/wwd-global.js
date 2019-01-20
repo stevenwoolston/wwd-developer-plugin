@@ -1,13 +1,23 @@
+window.addEventListener("load", function() {
 
-var WWD = (function ($) {
+    var tabs = document.querySelectorAll("ul.nav-tabs > li");
+   
+    for(var i = 0; i < tabs.length; i++) {
+        tabs[i].addEventListener("click", switchTab);
+    }
 
-    // setUpFormStyles = function () {
-    //     $("input[aria-required=true]").closest(".form-group").find(".control-label").addClass("required");
-    // };
+    function switchTab(event) {
+        event.preventDefault();
+        
+        document.querySelector("ul.nav-tabs li.active").classList.remove("active");
+        document.querySelector(".tab-pane.active").classList.remove("active");
 
-    return {
-        //SetUpFormStyles: setUpFormStyles,
-    };
+        var clickedTab = event.currentTarget;
+        var anchor = event.target;
+        var activePaneId = anchor.getAttribute("href");
 
-})(jQuery);
+        clickedTab.classList.add("active");
+        document.querySelector(activePaneId).classList.add("active");
+    }
 
+});

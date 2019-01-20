@@ -5,27 +5,27 @@
 
 if ( ! defined('ABSPATH')) exit;  // if direct access 
 
-add_action( 'admin_menu', 'add_acme_options_page' );
-function add_acme_options_page() {
+add_action( 'admin_menu', 'wwd_add_options_page' );
+function wwd_add_options_page() {
 
 	add_options_page(
 		'WWD Options',
 		'WWD Options',
 		'manage_options',
-		'acme-options-page',
-		'display_acme_options_page'
+		'wwd-options-page',
+		'display_options_page'
 	);
 
 }
 
-function display_acme_options_page() {
+function display_options_page() {
 
 	echo '<h1>WWD Options Panel</h1><hr />';
 
 	echo '<form method="post" action="options.php">';
 
-	do_settings_sections( 'acme-options-page' );
-	settings_fields( 'acme-settings' );
+	do_settings_sections( 'wwd-options-page' );
+	settings_fields( 'wwd-settings' );
 
 	submit_button();
 
@@ -33,78 +33,78 @@ function display_acme_options_page() {
 
 }
 
-add_action( 'admin_init', 'acme_admin_init_one' );
-function acme_admin_init_one() {
+add_action( 'admin_init', 'admin_init_one' );
+function admin_init_one() {
 
 	add_settings_section(
-		'acme-settings-section-one',      
+		'wwd-settings-section-one',      
 		'General Options',         
 		'display_general_settings_message',  
-		'acme-options-page'               
+		'wwd-options-page'               
 	);
 
 	add_settings_field(
 		'frontpage_carousel',        
 		'Enable Front Page Carousel?',        
 		'display_frontpage_carousel',  
-		'acme-options-page',        
-		'acme-settings-section-one' 
+		'wwd-options-page',        
+		'wwd-settings-section-one' 
 	);
 
 	add_settings_field(
 		'carousel_category',
 		'Category For Carousel',
 		'display_carousel_category',
-		'acme-options-page',
-		'acme-settings-section-one'
+		'wwd-options-page',
+		'wwd-settings-section-one'
 	);
     
 	add_settings_field(
 		'carousel_speed',
 		'Carousel Transition Speed (in seconds)',
 		'display_carousel_speed',
-		'acme-options-page',
-		'acme-settings-section-one'
+		'wwd-options-page',
+		'wwd-settings-section-one'
 	);
     
 	add_settings_field(
 		'carousel_transition',
 		'Carousel Transition',
 		'display_carousel_transition',
-		'acme-options-page',
-		'acme-settings-section-one'
+		'wwd-options-page',
+		'wwd-settings-section-one'
 	);
     
 	add_settings_field(
 		'home_content_category',
 		'Full Width Home Content Category',
 		'display_home_content_category',
-		'acme-options-page',
-		'acme-settings-section-one'
+		'wwd-options-page',
+		'wwd-settings-section-one'
 	);
     
 	register_setting(
-		'acme-settings',    
+		'wwd-settings',    
 		'frontpage_carousel'    
 	);
     
 	register_setting(
-		'acme-settings',    
+		'wwd-settings',    
 		'carousel_category'    
 	);
     
 	register_setting(
-		'acme-settings',    
+		'wwd-settings',    
 		'carousel_speed'    
 	);
     
 	register_setting(
-		'acme-settings',    
+		'wwd-settings',    
 		'carousel_transition'    
 	);
 
 	register_setting(
-		'acme-settings',    
+		'wwd-settings',    
 		'home_content_category'    
 	);
     
@@ -114,91 +114,91 @@ function display_general_settings_message() {
 	echo "<p>General settings that are used in the WWD Theme.</p>";
 }
 
-add_action( 'admin_init', 'acme_admin_init_two' );
-function acme_admin_init_two() {
+add_action( 'admin_init', 'admin_init_two' );
+function admin_init_two() {
 
 	add_settings_section(
-		'acme-settings-section-two',
+		'wwd-settings-section-two',
 		'<hr />SEO Options',
 		'display_seo_settings_message',
-		'acme-options-page'
+		'wwd-options-page'
 	);
 
 	add_settings_field(
 		'facebookurl',
 		'Facebook URL',
 		'display_facebook_url',
-		'acme-options-page',
-		'acme-settings-section-two'
+		'wwd-options-page',
+		'wwd-settings-section-two'
 	);
 
 	add_settings_field(
 		'twitter_url',
 		'Twitter URL',
 		'display_twitter_url',
-		'acme-options-page',
-		'acme-settings-section-two'
+		'wwd-options-page',
+		'wwd-settings-section-two'
 	);
     
 	add_settings_field(
 		'googleurl',
 		'Google Plus URL',
 		'display_google_url',
-		'acme-options-page',
-		'acme-settings-section-two'
+		'wwd-options-page',
+		'wwd-settings-section-two'
 	);
 
 	add_settings_field(
 		'youtube_url',
 		'Youtube Channel URL',
 		'display_youtube_url',
-		'acme-options-page',
-		'acme-settings-section-two'
+		'wwd-options-page',
+		'wwd-settings-section-two'
 	);
     
 	add_settings_field(
 		'tracking_code',
 		'Google Analytics Tracking Code',
 		'display_tracking_code',
-		'acme-options-page',
-		'acme-settings-section-two'
+		'wwd-options-page',
+		'wwd-settings-section-two'
 	);
     
 	add_settings_field(
 		'meta_description',
 		'Meta Description (155 chars)',
 		'display_meta_description',
-		'acme-options-page',
-		'acme-settings-section-two'
+		'wwd-options-page',
+		'wwd-settings-section-two'
 	);
 
 	register_setting(
-		'acme-settings',
+		'wwd-settings',
 		'facebook_url'
 	);
 
 	register_setting(
-		'acme-settings',
+		'wwd-settings',
 		'twitter_url'
 	); 
 
 	register_setting(
-		'acme-settings',
+		'wwd-settings',
 		'google_url'
 	);
 
 	register_setting(
-		'acme-settings',
+		'wwd-settings',
 		'youtube_url'
 	); 
     
 	register_setting(
-		'acme-settings',
+		'wwd-settings',
 		'tracking_code'
 	); 
     
 	register_setting(
-		'acme-settings',
+		'wwd-settings',
 		'meta_description'
 	);     
 }

@@ -6,6 +6,8 @@ function wwd_plugin_activate() {
         return;
     }
 
+    //  need to build logic to push into existing options
+    
     $default = array(
         'custom_carousel' => true,
         'custom_posts' => array(
@@ -28,11 +30,11 @@ function wwd_plugin_activate() {
 
 function wwd_plugin_deactivate() {
   
-    if ( !is_admin() || !get_option( 'wwd_plugin' ) ) {
-        return;
-    }
+    // if ( !is_admin() || !get_option( 'wwd_plugin' ) ) {
+    //     return;
+    // }
 
-    delete_option('wwd_plugin');
+    // delete_option('wwd_plugin');
 
-    flush_rewrite_rules();
+    // flush_rewrite_rules();
 }
