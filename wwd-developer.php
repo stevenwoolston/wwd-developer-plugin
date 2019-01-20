@@ -17,12 +17,11 @@ if ( !defined( 'ABSPATH' ) ) {
     exit;
 }
 
-function wwd_add_assets() {
-    //wp_enqueue_style('wwd-style', plugins_url() . '/wwd-developer/css/wwd-global.css');
-    //wp_enqueue_script('wwd-script', plugins_url() . '/wwd-developer/js/wwd-global.js');
+function wwd_enqueue_assets() {
+    wp_enqueue_style('wwd-style', plugins_url('/css/wwd-global.css', __FILE__));
+    wp_enqueue_script('wwd-script', plugins_url('/js/wwd-global.js', __FILE__));
 }
-add_action('wp_enqueue_scripts', 'wwd_add_assets');
-
+add_action('admin_enqueue_scripts', 'wwd_enqueue_assets');
 
 require_once(plugin_dir_path(__FILE__) . '/library/wwd-custom-layout-type.php');
 
@@ -32,10 +31,13 @@ require_once(plugin_dir_path(__FILE__) . '/library/wwd-options.php');
 
 require_once(plugin_dir_path(__FILE__) . '/library/wwd-gallery.php');
 
+require_once(plugin_dir_path(__FILE__) . '/library/wwd-activate-plugin.php');
+
 /*  Do some maintenance */
 require_once(plugin_dir_path(__FILE__) . '/library/wwd-optimisation.php');
-register_activation_hook(__FILE__,'simple_optimization_cron_on');
-register_deactivation_hook(__FILE__,'simple_optimization_cron_off');
+
+register_activation_hook(__FILE__, 'wwd_plugin_activate');
+register_deactivation_hook(__FILE__, 'wwd_plugin_deactivate');
 
 /*** BootStrap Walker Extension code **/
 require_once(plugin_dir_path(__FILE__) . '/library/wp-bootstrap-navwalker.php');
