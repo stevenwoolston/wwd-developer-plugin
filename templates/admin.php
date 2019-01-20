@@ -5,10 +5,13 @@
 
     <ul class="nav nav-tabs">
         <li class="active">
-            <a href="#tab-1"Manage Settings></a>
+            <a href="#tab-1">Manage Settings</a>
         </li>
         <li>
             <a href="#tab-2">Updates</a>
+        </li>
+        <li>
+            <a href="#tab-4">Social Media and SEO</a>
         </li>
         <li>
             <a href="#tab-3">About</a>
@@ -32,6 +35,9 @@
         <h2>About</h2>
     </div>
 
+    <div id="tab-4" class="tab-pane">
+        <h2>Social Media and SEO</h2>
+    </div>
 </div>
 
 </div>

@@ -17,11 +17,11 @@ if ( !defined( 'ABSPATH' ) ) {
     exit;
 }
 
-function wwd_enqueue_assets() {
-    wp_enqueue_style('wwd-style', plugins_url('/css/wwd-global.css', __FILE__));
-    wp_enqueue_script('wwd-script', plugins_url('/js/wwd-global.js', __FILE__));
-}
-add_action('admin_enqueue_scripts', 'wwd_enqueue_assets');
+define("WWD_PLUGIN_PATH", plugin_dir_path(__FILE__));
+define("WWD_PLUGIN_BASENAME", plugin_basename(__FILE__));
+wwd_init();
+
+require_once(plugin_dir_path(__FILE__) . '/inc/wwd-config.php');
 
 require_once(plugin_dir_path(__FILE__) . '/library/wwd-custom-layout-type.php');
 
@@ -36,13 +36,24 @@ require_once(plugin_dir_path(__FILE__) . '/library/wwd-activate-plugin.php');
 /*  Do some maintenance */
 require_once(plugin_dir_path(__FILE__) . '/library/wwd-optimisation.php');
 
-register_activation_hook(__FILE__, 'wwd_plugin_activate');
-register_deactivation_hook(__FILE__, 'wwd_plugin_deactivate');
-
 /*** BootStrap Walker Extension code **/
 require_once(plugin_dir_path(__FILE__) . '/library/wp-bootstrap-navwalker.php');
 /*** Full width Bootstrap mega menu */
 require_once(plugin_dir_path(__FILE__) . '/library/yamm-nav-walker.php');
+
+function wwd_init() {
+    add_action('admin_enqueue_scripts', 'wwd_enqueue_assets');
+
+    register_activation_hook(__FILE__, 'wwd_plugin_activate');
+    register_deactivation_hook(__FILE__, 'wwd_plugin_deactivate');
+    
+}
+
+
+function wwd_enqueue_assets() {
+    wp_enqueue_style('wwd-style', plugins_url('/css/wwd-global.css', __FILE__));
+    wp_enqueue_script('wwd-script', plugins_url('/js/wwd-global.js', __FILE__));
+}
 
 /*	functions.php
 **	

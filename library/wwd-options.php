@@ -4,7 +4,140 @@
 */
 
 if ( ! defined('ABSPATH')) exit;  // if direct access 
+$admin_pages = array();
 
+function wwd_add_admin_pages() {
+    add_menu_page("WWD Admin", "WWD", "manage_options", "wwd_plugin", "wwd_admin_index", 'dashicons-store', 110);
+}
+add_action("admin_menu", "wwd_add_admin_pages");
+
+$admin_pages = [
+    [
+        'page_title' => 'WWD Admin', 
+        'menu_title' => 'WWD', 
+        'capability' => 'manage_options', 
+        'menu_slug' => 'wwd_plugin', 
+        'callback' => 'wwd_admin_index', 
+        'icon_url' => 'dashicons-store', 
+        'position' => 110
+    ]    
+];
+
+wwd_add_pages($admin_pages);
+
+//  callback for wwd_add_admin_pages
+function wwd_admin_index() {
+    require_once WWD_PLUGIN_PATH . "/templates/admin.php";
+}
+
+function wwd_add_pages(array $pages) {
+    $admin_pages = $pages;
+    wwd_register_admin_pages($admin_pages);
+}
+
+function wwd_register_admin_pages() {
+    if (!empty($admin_pages)) {
+        add_action('admin_menu', 'wwd_add_admin_menu');
+    }
+}
+
+function wwd_add_admin_menu() {
+    foreach($admin_pages as $page) {
+        add_menu_page(
+            $page['page_title'], 
+            $page['menu_title'], 
+            $page['capability'], 
+            $page['menu_slug'], 
+            $page['callback'], 
+            $page['icon_url'], 
+            $page['position'] 
+        );
+    }
+}
+
+
+/*
+    Creating field related content
+*/
+$wwd_settings = array();
+$wwd_sections = array();
+$wwd_fields = array();
+
+function wwd_options_group($input) {
+    return $input;
+}
+
+$wwd_settings = [
+    [
+        'option_group' => 'wwd_options_group',
+        'option_name' => 'text_example',
+        'callback' => array('wwd_options_group')
+    ]
+];
+
+$wwd_sections = [
+    [
+        'id' => 'wwd_admin_index',
+        'title' => 'Settings',
+        'callback' => function() { echo 'Section'; },
+        'page' => 'wwd_plugin'
+    ]
+];
+
+$wwd_fields = [
+    [
+        'id' => 'text_example',
+        'title' => 'Text Example',
+        'callback' => function() { echo '<input type="text" class="regular-text" name="text-example" value="123" />'; },
+        'page' => 'wwd_plugin',
+        'section' => 'wwd_admin_index',
+        'args' => array(
+            'label_for' => 'text_example',
+            'class' => 'example-class'
+        )
+    ]
+];
+
+function wwd_register_custom_fields() {
+    // var_dump($wwd_settings);
+    // var_dump($wwd_sections);
+    // var_dump($wwd_fields);
+
+    foreach($wwd_settings as $setting) {
+        register_setting(
+            $setting["option_group"], 
+            $setting["option_name"], 
+            (isset($setting["callback"]) ? $setting["callback"] : "" )
+        );
+    };
+
+    foreach($wwd_sections as $section) {
+        add_settings_section(
+            $section["id"],
+            $section["title"],
+            (isset($section["callback"]) ? $section["callback"] : "" ),
+            $section["page"]
+        );
+    };
+
+    foreach($wwd_fields as $field) {
+        add_settings_field(
+            $field["id"],
+            $field["title"],
+            (isset($field["callback"]) ? $field["callback"] : "" ),
+            $field["page"],
+            $field["section"],
+            (isset($field["args"]) ? $field["args"] : "" )
+        );
+    }
+}
+add_action('admin_menu', 'wwd_register_custom_fields');
+
+
+
+
+
+/*
 add_action( 'admin_menu', 'wwd_add_options_page' );
 function wwd_add_options_page() {
 
@@ -316,4 +449,4 @@ function display_home_content_category()
     </select>
 <?php
 }
-?>
+*/
