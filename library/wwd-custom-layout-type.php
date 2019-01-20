@@ -7,19 +7,21 @@
 
 if ( ! defined('ABSPATH')) exit;  // if direct access 
 
-$blog_id = get_current_blog_id();
-switch_to_blog($blog_id);
-$options = get_option('wwd_plugin');
-var_dump($options);
-$custom_post_types = $options['custom_posts'];
+function wwd_options_custom_post_type() {
 
-if (!empty($custom_post_types)){
+    $options = get_option('wwd_plugin');
+    $custom_post_types = $options['custom_posts'];
 
+    if (empty($custom_post_types)){
+        var_dump("There are no options");
+        return;
+    }
+    
     for ($i = 0; $i < count($custom_post_types); $i++) {
         $name = $custom_post_types[$i]["name"];
         $label = $custom_post_types[$i]["label"];
         $plural = $custom_post_types[$i]["plural"];
-        
+
         $labels = array(
             'name' => _x( $label, $name ),
             'singular_name' => _x( $label, $name ),
@@ -51,8 +53,13 @@ if (!empty($custom_post_types)){
             'rewrite' => array('slug' => $name),
             'capability_type' => 'post'
         );
+
+        register_post_type( $name, $args );
+
     }
+    
 }
+add_action( 'init', 'wwd_options_custom_post_type' );
 
 function wwd_generic_custom_layout_type($name, $label, $plural) {
 
@@ -91,7 +98,6 @@ function wwd_generic_custom_layout_type($name, $label, $plural) {
     register_post_type( $name, $args );
 
 }
-
 
 function wwd_custom_layout_type() {
 

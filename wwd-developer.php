@@ -31,44 +31,18 @@ require_once(plugin_dir_path(__FILE__) . '/library/wwd-options.php');
 
 require_once(plugin_dir_path(__FILE__) . '/library/wwd-gallery.php');
 
+require_once(plugin_dir_path(__FILE__) . '/library/wwd-activate-plugin.php');
+
 /*  Do some maintenance */
 require_once(plugin_dir_path(__FILE__) . '/library/wwd-optimisation.php');
-register_activation_hook(__FILE__, 'simple_optimization_cron_on');
-register_deactivation_hook(__FILE__,'simple_optimization_cron_off');
+
+register_activation_hook(__FILE__, 'wwd_plugin_activate');
+register_deactivation_hook(__FILE__, 'wwd_plugin_deactivate');
 
 /*** BootStrap Walker Extension code **/
 require_once(plugin_dir_path(__FILE__) . '/library/wp-bootstrap-navwalker.php');
 /*** Full width Bootstrap mega menu */
 require_once(plugin_dir_path(__FILE__) . '/library/yamm-nav-walker.php');
-
-register_activation_hook( __FILE__, 'wwd_plugin_activate' );
-  
-function wwd_plugin_activate() {
-  
-    if ( !is_admin() || get_option( 'wwd_plugin' ) ) {
-        return;
-    }
-
-    delete_option('wwd_plugin');
-
-    $default = array(
-        'custom_posts' => array(
-            array(
-                'name' => 'layout',
-                'label' => 'Layout',
-                'plural' => 'Layouts'
-            ),
-            array(
-                'name' => 'apartment',
-                'label' => 'Apartment',
-                'plural' => 'Apartments'
-            )
-        )
-    );
-    update_option('wwd_plugin', $default);
-}
-// add_action( 'admin_init', 'load_plugin' );
-
 
 /*	functions.php
 **	
