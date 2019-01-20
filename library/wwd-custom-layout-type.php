@@ -7,14 +7,51 @@
 
 if ( ! defined('ABSPATH')) exit;  // if direct access 
 
-//add_option("wwd_custom_post_types", $post_types);
-$customPostTypes = get_option("wwd_custom_post_types");
-for ($i = 0; $i < count($customPostTypes); $i++) {
-    $name = $customPostTypes[$i]["name"];
-    $label = $customPostTypes[$i]["label"];
-    $plural = $customPostTypes[$i]["plural"];
-    var_dump($name, $label, $plural);
-    //wwd_generic_custom_layout_type($name, $label, $plural);
+$blog_id = get_current_blog_id();
+switch_to_blog($blog_id);
+$options = get_option('wwd_plugin');
+var_dump($options);
+$custom_post_types = $options['custom_posts'];
+
+if (!empty($custom_post_types)){
+
+    for ($i = 0; $i < count($custom_post_types); $i++) {
+        $name = $custom_post_types[$i]["name"];
+        $label = $custom_post_types[$i]["label"];
+        $plural = $custom_post_types[$i]["plural"];
+        
+        $labels = array(
+            'name' => _x( $label, $name ),
+            'singular_name' => _x( $label, $name ),
+            'add_new' => _x( 'Add New', $name ),
+            'add_new_item' => _x( 'Add New ' . $label, $name ),
+            'edit_item' => _x( 'Edit ' . $label, $name ),
+            'new_item' => _x( 'New ' . $label, $name ),
+            'view_item' => _x( 'View ' . $label, $name ),
+            'search_items' => _x( 'Search ' . $label, $name ),
+            'not_found' => _x( 'No Layout found', $name ),
+            'not_found_in_trash' => _x( 'No Layout found in Trash', $name ),
+            'menu_name' => _x( $plural, $name )
+        );
+        $args = array(
+            'labels' => $labels,
+            'hierarchical' => false,
+            'supports' => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'page-attributes' ),
+            'taxonomies' => array('category'),
+            'public' => true,
+            'show_ui' => true,
+            'show_in_menu' => true,
+            'menu_icon' => 'dashicons-editor-table',
+            'show_in_nav_menus' => true,
+            'publicly_queryable' => true,
+            'exclude_from_search' => false,
+            'has_archive' => true,
+            'query_var' => true,
+            'can_export' => true,
+            'rewrite' => array('slug' => $name),
+            'capability_type' => 'post'
+        );
+    }
 }
 
 function wwd_generic_custom_layout_type($name, $label, $plural) {
@@ -47,7 +84,7 @@ function wwd_generic_custom_layout_type($name, $label, $plural) {
         'has_archive' => true,
         'query_var' => true,
         'can_export' => true,
-        'rewrite' => array('slug' => $name),
+        // 'rewrite' => array('slug' => $name),
         'capability_type' => 'post'
     );
 
