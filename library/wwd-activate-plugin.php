@@ -23,7 +23,7 @@ function wwd_plugin_activate() {
             )
         )
     );
-    update_option('wwd_plugin', $default);
+    update_option('wwd-plugin', $default);
     
     flush_rewrite_rules();
 }

@@ -18,26 +18,28 @@
         </li>
     </ul>
 
-<div class="tab-content">
-    <div id="tab-1" class="tab-pane active">
-        <form action="options.php" method="post">
-        <?php 
-        
-        ?>
-        </form>    
-    </div>
+    <form action="options.php" method="post">
+        <div class="tab-content">
+            <div id="tab-1" class="tab-pane active">
+                <?php
+                    settings_fields('wwd-plugin');
+                    do_settings_sections('wwd_plugin');
+                ?>
+            </div>
 
-    <div id="tab-2" class="tab-pane">
-        <h2>Updates</h2>
-    </div>
+            <div id="tab-2" class="tab-pane">
+                <h2>Updates</h2>
+            </div>
 
-    <div id="tab-3" class="tab-pane">
-        <h2>About</h2>
-    </div>
+            <div id="tab-3" class="tab-pane">
+                <h2>About</h2>
+            </div>
 
-    <div id="tab-4" class="tab-pane">
-        <h2>Social Media and SEO</h2>
-    </div>
-</div>
+            <div id="tab-4" class="tab-pane">
+                <h2>Social Media and SEO</h2>
+            </div>
+        </div>
+        <?php submit_button();  ?>
+    </form>    
 
 </div>
