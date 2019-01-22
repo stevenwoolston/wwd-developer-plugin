@@ -5,25 +5,21 @@
 
 if ( ! defined('ABSPATH')) exit;  // if direct access 
 
+/*  Otto    */
+
+/*  end Otto    */
+
 function wwd_add_admin_page() {
     add_menu_page( 'WWD Theme Options', 'WWD', 'manage_options', 'wwd_plugin', 'wwd_theme_create_page', 'dashicons-admin-customizer', 110 );
     add_submenu_page( 'wwd_plugin',  'WWD Theme Options',  'Settings',  'manage_options',  'wwd_plugin',  'wwd_theme_create_page' );
 
-    add_action( 'admin_init', 'wwd_custom_settings' );
+    register_setting('wwd-plugin-options', 'wwd-plugin');
 }
 add_action('admin_menu', 'wwd_add_admin_page');
 
 function wwd_theme_create_page() {
+    $options = get_option('wwd-plugin');
     require_once WWD_PLUGIN_PATH . "/templates/admin.php";
-}
-
-function wwd_custom_settings() {
-    register_setting('wwd-plugin', 'options_object');
-    add_settings_section('wwd-seo-options', 'SEO Options', 'wwd_seo_options', 'wwd_plugin');
-}
-
-function wwd_seo_options() {
-    require_once WWD_PLUGIN_PATH . "/templates/admin-seo.php";    
 }
 
 /*

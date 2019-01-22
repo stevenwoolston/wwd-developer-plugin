@@ -19,12 +19,33 @@
     </ul>
 
     <form action="options.php" method="post">
+    <?php settings_fields('wwd-plugin-options'); ?>
         <div class="tab-content">
             <div id="tab-1" class="tab-pane active">
-                <?php
-                    settings_fields('wwd-plugin');
-                    do_settings_sections('wwd_plugin');
-                ?>
+                <table class="form-table">
+                    <tr valign="top">
+                        <th scope="row">
+                            <label for="custom_carousel">Carousel:</label>
+                        </th>
+                        <td>
+                            <input type="text" id="custom_carousel" size="50" name="wwd-plugin[custom_carousel]" value="<?php echo $options['custom_carousel']; ?>" />
+                        </td>
+                    </tr>
+                    <tr valign="top">
+                        <th scope="row">
+                            <label for="custom_carousel">Custom Posts:</label>
+                        </th>
+                        <td>
+<?php
+var_dump ($options['custom_posts']);
+    echo '<ul>';
+    foreach($options['custom_posts'] as $post) {
+        echo '<li>' . $post->name . '</li>';
+    }
+?>
+                        </td>
+                    </tr>                    
+                </table>
             </div>
 
             <div id="tab-2" class="tab-pane">
