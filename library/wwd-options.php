@@ -1,6 +1,7 @@
 <?php
 /*  Custom Options Page 
 **  https://gist.githubusercontent.com/tommcfarlin/04782209b0822ce2bf1f/raw/4249877ae35665e1a4776de420b7df34d36102aa/display-acme-options-final.php
+**  https://wordpress.stackexchange.com/questions/154478/passing-array-in-add-option
 */
 
 if ( ! defined('ABSPATH')) exit;  // if direct access 
