@@ -36,13 +36,38 @@
                             <label for="custom_carousel">Custom Posts:</label>
                         </th>
                         <td>
+
+                            <table class="wwd-admin" cellpadding="0" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Post Id</th>
+                                        <th>Post Label</th>
+                                        <th>Post Plural</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 <?php
-var_dump ($options['custom_posts']);
-    echo '<ul>';
-    foreach($options['custom_posts'] as $post) {
-        echo '<li>' . $post->name . '</li>';
+    $i = 0;
+    $array_options = $options['custom_posts'];
+    foreach($array_options as $post) {
+?>
+                                    <tr>
+                                        <td>
+                                            <input type="text" size="30" name='wwd-plugin[custom_posts][<?php echo $i; ?>][name]' value='<?php echo $post["name"]; ?>' />
+                                        </td>
+                                        <td>
+                                            <input type="text" size="30" name='wwd-plugin[custom_posts][<?php echo $i; ?>][label]' value='<?php echo $post["label"]; ?>' />
+                                        </td>
+                                        <td>
+                                            <input type="text" size="30" name='wwd-plugin[custom_posts][<?php echo $i; ?>][plural]' value='<?php echo $post["plural"]; ?>' />
+                                        </td>
+                                    </tr>          
+<?php
+    $i++;
     }
 ?>
+                                </tbody>
+                            </table>
                         </td>
                     </tr>                    
                 </table>
@@ -59,8 +84,9 @@ var_dump ($options['custom_posts']);
             <div id="tab-4" class="tab-pane">
                 <h2>Social Media and SEO</h2>
             </div>
+
+            <?php submit_button();  ?>
         </div>
-        <?php submit_button();  ?>
     </form>    
 
 </div>

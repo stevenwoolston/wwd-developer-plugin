@@ -43,7 +43,6 @@ require_once(plugin_dir_path(__FILE__) . '/library/yamm-nav-walker.php');
 
 function wwd_init() {
     add_action('admin_enqueue_scripts', 'wwd_enqueue_assets');
-
     register_activation_hook(__FILE__, 'wwd_plugin_activate');
     register_deactivation_hook(__FILE__, 'wwd_plugin_deactivate');
     
