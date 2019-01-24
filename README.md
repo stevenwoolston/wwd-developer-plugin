@@ -10,5 +10,3 @@ Such as
 * Wordpress options GUI
 * Bootstrap Navwalker
 * Bootstrap YAMM Navwalker
-
-~Current Version:2.0~
