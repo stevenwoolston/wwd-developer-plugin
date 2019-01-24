@@ -21,7 +21,19 @@ function wwd_plugin_activate() {
                 'label' => 'Apartment',
                 'plural' => 'Apartments'
             )
+        ),
+        'seo' => array(
+            'meta_description' => '',
+            'google_analytics_tracking_code' => ''
+        ), 
+        'social_media' => array(
+            'facebook_url' => '',
+            'twitter_url' => '',
+            'linkedin_url' => '',
+            'instagram_url' => '',
+            'youtube_url' => ''
         )
+
     );
     update_option('wwd-plugin', $default);
     

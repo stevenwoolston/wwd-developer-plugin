@@ -7,16 +7,15 @@ h1 {
 }
 
 .nav-tabs {
-    display: block;
     width: 100%;
     margin: 0;
     list-style-type: none;
     border-bottom: 1px solid transparent;
+    height: 30px;
 }
 
-.nav-tabs:after {
+.nav-tabs > li:after {
     content: " ";
-    clear: both;
 }
 
 .nav-tabs > li {
@@ -27,10 +26,12 @@ h1 {
 .nav-tabs > li > a {
     margin-right: 2px;
     line-height: 1.5;
-    padding: 10px 10px 5px 10px;
+    font-size: 1.4em;
+    padding: 10px 15px 5px 15px;
     border: 1px solid transparent;
     border-radius: 4px 4px 0 0;
     text-decoration: none;
+    outline-width: 0;
 }
 
 .nav-tabs > li > a:hover {
@@ -85,4 +86,8 @@ table.wwd-admin tbody td {
     padding: 5px;
     border: 1px solid #ccc;
     background-color: #fff;
+}
+
+.form-table input {
+    width: 300px;
 }
