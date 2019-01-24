@@ -1,10 +1,29 @@
 <?php
 /*  Custom Options Page 
 **  https://gist.githubusercontent.com/tommcfarlin/04782209b0822ce2bf1f/raw/4249877ae35665e1a4776de420b7df34d36102aa/display-acme-options-final.php
+**  https://wordpress.stackexchange.com/questions/154478/passing-array-in-add-option
 */
 
 if ( ! defined('ABSPATH')) exit;  // if direct access 
 
+/*  Otto    */
+
+/*  end Otto    */
+
+function wwd_add_admin_page() {
+    add_menu_page( 'WWD Theme Options', 'WWD', 'manage_options', 'wwd_plugin', 'wwd_theme_create_page', 'dashicons-admin-customizer', 110 );
+    add_submenu_page( 'wwd_plugin',  'WWD Theme Options',  'Settings',  'manage_options',  'wwd_plugin',  'wwd_theme_create_page' );
+
+    register_setting('wwd-plugin-options', 'wwd-plugin');
+}
+add_action('admin_menu', 'wwd_add_admin_page');
+
+function wwd_theme_create_page() {
+    $options = get_option('wwd-plugin');
+    require_once WWD_PLUGIN_PATH . "/templates/admin.php";
+}
+
+/*
 add_action( 'admin_menu', 'wwd_add_options_page' );
 function wwd_add_options_page() {
 
@@ -316,4 +335,4 @@ function display_home_content_category()
     </select>
 <?php
 }
-?>
+*/

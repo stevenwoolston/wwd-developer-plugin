@@ -1,23 +1,37 @@
+* {
+    box-sizing: border-box;
+}
+
+h1 {
+    margin-bottom: 20px !important;
+}
+
 .nav-tabs {
-    float: left;
     width: 100%;
     margin: 0;
     list-style-type: none;
     border-bottom: 1px solid transparent;
+    height: 30px;
+}
+
+.nav-tabs > li:after {
+    content: " ";
 }
 
 .nav-tabs > li {
     float: left;
-    margin-bottom: -1px;
+    margin: 0;
 }
 
 .nav-tabs > li > a {
     margin-right: 2px;
     line-height: 1.5;
-    padding: 10px;
+    font-size: 1.4em;
+    padding: 10px 15px 5px 15px;
     border: 1px solid transparent;
     border-radius: 4px 4px 0 0;
     text-decoration: none;
+    outline-width: 0;
 }
 
 .nav-tabs > li > a:hover {
@@ -34,8 +48,18 @@
     border-bottom-color: transparent;
 }
 
+form {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+.tab-content {
+    box-shadow: 0 5px 4px -2px rgba(0,0,0,0.15);
+    background-color: #fff;
+    padding: 10px;
+}
+
 .tab-content > .tab-pane {
-    float: left;
     width: 100%;
     display: none;
 }
@@ -44,5 +68,26 @@
     display: block;
     padding: 10px;
     background-color: #fff;
-    box-shadow: 0 5px 4px -2px rgba(0,0,0,0.15);
+}
+
+table.wwd-admin {
+    padding: 0;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-collapse: collapse;
+}
+
+table.wwd-admin thead th {
+    padding: 5px;
+    background-color: #ccc;
+}
+
+table.wwd-admin tbody td {
+    padding: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.form-table input {
+    width: 300px;
 }

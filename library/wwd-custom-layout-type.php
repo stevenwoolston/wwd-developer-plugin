@@ -9,7 +9,7 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
 function wwd_options_custom_post_type() {
 
-    $options = get_option('wwd_plugin');
+    $options = get_option('wwd-plugin');
     $custom_post_types = $options['custom_posts'];
 
     if (empty($custom_post_types)){
