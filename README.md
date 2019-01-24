@@ -11,4 +11,4 @@ Such as
 * Bootstrap Navwalker
 * Bootstrap YAMM Navwalker
 
-~Current Version:1.4~
+~Current Version:2.0~
