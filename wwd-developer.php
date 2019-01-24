@@ -5,7 +5,7 @@
 Plugin Name: WWD Developer
 Plugin URI: https://github.com/woolstonwebdesign/wwd-developer-plugin
 Description: Woolston Web Design Developer Plugin
-Version: 2.0.0
+Version: 1.0.0
 Author: Steven Woolston
 Author URI: https://www.woolston.com.au
 Text Domain: social_share_button
@@ -64,9 +64,9 @@ function check_for_update() {
 			'slug' => plugin_basename(__FILE__), // this is the slug of your plugin
 			'proper_folder_name' => 'wwd-developer', // this is the name of the folder your plugin lives in
 			'api_url' => 'https://api.github.com/repos/woolstonwebdesign/wwd-developer-plugin', // the GitHub API url of your GitHub repo
-			'raw_url' => 'https://raw.github.com/woolstonwebdesign/wwd-developer-plugin/dev', // the GitHub raw url of your GitHub repo
+			'raw_url' => 'https://raw.github.com/woolstonwebdesign/wwd-developer-plugin/master', // the GitHub raw url of your GitHub repo
 			'github_url' => 'https://github.com/woolstonwebdesign/wwd-developer-plugin', // the GitHub url of your GitHub repo
-			'zip_url' => 'https://github.com/woolstonwebdesign/wwd-developer-plugin/zipball/dev', // the zip url of the GitHub repo
+			'zip_url' => 'https://github.com/woolstonwebdesign/wwd-developer-plugin/zipball/master', // the zip url of the GitHub repo
 			'sslverify' => true, // whether WP should check the validity of the SSL cert when getting an update, see https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/2 and https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/4 for details
 			'requires' => '3.0', // which version of WordPress does your plugin require?
 			'tested' => '3.3', // which version of WordPress is your plugin tested up to?
