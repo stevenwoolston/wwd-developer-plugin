@@ -5,7 +5,7 @@
 Plugin Name: WWD Developer
 Plugin URI: https://github.com/woolstonwebdesign/wwd-developer-plugin
 Description: Woolston Web Design Developer Plugin
-Version: 2.0
+Version: 2.1
 Author: Steven Woolston
 Author URI: https://www.woolston.com.au
 Text Domain: social_share_button
@@ -32,25 +32,34 @@ require_once(plugin_dir_path(__FILE__) . '/library/wwd-gallery.php');
 
 require_once(plugin_dir_path(__FILE__) . '/library/wwd-activate-plugin.php');
 
-/*  Do some maintenance */
 require_once(plugin_dir_path(__FILE__) . '/library/wwd-optimisation.php');
 
-/*** BootStrap Walker Extension code **/
 require_once(plugin_dir_path(__FILE__) . '/library/wp-bootstrap-navwalker.php');
-/*** Full width Bootstrap mega menu */
+
 require_once(plugin_dir_path(__FILE__) . '/library/yamm-nav-walker.php');
+
 
 wwd_init();
 function wwd_init() {
     add_action('admin_enqueue_scripts', 'wwd_enqueue_assets');
-    register_activation_hook(__FILE__, 'wwd_plugin_activate');
-    register_deactivation_hook(__FILE__, 'wwd_plugin_deactivate');
+    register_activation_hook(__FILE__, 'wwd_activation_hook');
+    register_deactivation_hook(__FILE__, 'wwd_deactivation_hook');
     add_action('init', 'check_for_update');
 }
 
 function wwd_enqueue_assets() {
     wp_enqueue_style('wwd-style', plugins_url('/css/wwd-global.css', __FILE__));
     wp_enqueue_script('wwd-script', plugins_url('/js/wwd-global.js', __FILE__));
+}
+
+function wwd_activation_hook() {
+    wwd_plugin_activate();
+    simple_optimization_cron_on();
+}
+
+function wwd_deactivation_hook() {
+    wwd_plugin_deactivate();
+    simple_optimization_cron_off();
 }
 
 function check_for_update() {
@@ -76,6 +85,7 @@ function check_for_update() {
 		new WP_GitHub_Updater($config);
 	}    
 }
+
 /*	functions.php
 **	
 	add_action( 'init', 'wwd_custom_layout_type', 0 );

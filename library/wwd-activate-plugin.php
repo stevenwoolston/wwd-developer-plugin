@@ -6,20 +6,13 @@ function wwd_plugin_activate() {
         return;
     }
 
-    //  need to build logic to push into existing options
-    
-    $default = array(
+    $defaultOptions = array(
         'custom_carousel' => true,
         'custom_posts' => array(
             array(
                 'name' => 'layout',
                 'label' => 'Layout',
                 'plural' => 'Layouts'
-            ),
-            array(
-                'name' => 'apartment',
-                'label' => 'Apartment',
-                'plural' => 'Apartments'
             )
         ),
         'seo' => array(
@@ -35,18 +28,24 @@ function wwd_plugin_activate() {
         )
 
     );
-    update_option('wwd-plugin', $default);
-    
-    flush_rewrite_rules();
+
+    if (!get_option('wwd-plugin')) {
+        update_option('wwd-plugin', $defaultOptions);
+        flush_rewrite_rules();
+    } else {
+
+        $existingOptions = get_option('wwd-plugin');
+
+    }
 }
 
 function wwd_plugin_deactivate() {
   
-    // if ( !is_admin() || !get_option( 'wwd_plugin' ) ) {
-    //     return;
-    // }
+    if ( !is_admin() || !get_option( 'wwd-plugin' ) ) {
+        return;
+    }
 
-    // delete_option('wwd_plugin');
-
+    // delete_option('wwd-plugin');
     // flush_rewrite_rules();
+
 }
