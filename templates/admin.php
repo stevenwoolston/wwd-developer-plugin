@@ -26,12 +26,12 @@
                 <table class="form-table">
                     <tr valign="top">
                         <th scope="row">
-                            <label for="custom_carousel">Use Custom Carousel:</label>
+                            <label for="wwd-plugin[bootstrap_carousel]">Use Custom Carousel:</label>
                         </th>
                         <td>
-                            <select name="wwd-plugin[custom_carousel]">
-                                <option value="0" <?php echo ($options['custom_carousel'] == 0 ? "selected" : ""); ?>>No</option>
-                                <option value="1" <?php echo ($options['custom_carousel'] == 1 ? "selected" : ""); ?>>Yes</option>
+                            <select name="wwd-plugin[bootstrap_carousel]">
+                                <option value="0" <?php echo ($options['bootstrap_carousel'] == 0 ? "selected" : ""); ?>>No</option>
+                                <option value="1" <?php echo ($options['bootstrap_carousel'] == 1 ? "selected" : ""); ?>>Yes</option>
                             </select>
                         </td>
                     </tr>

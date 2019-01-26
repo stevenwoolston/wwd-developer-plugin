@@ -7,9 +7,13 @@
 
 if ( ! defined('ABSPATH')) exit;  // if direct access 
 
-add_filter('post_gallery','wwd_gallery',10,2);
-add_action( 'init', 'custom_carousel_gallery_format', 4);
-add_filter( 'option_default_post_format', 'carousel_default_format' );
+$use_custom_gallery = get_option("wwd-plugin")['bootstrap_carousel'];
+if ($use_custom_gallery == 1) {
+    //  only set this up if the option is selected
+    add_filter('post_gallery','wwd_gallery', 10, 2);
+    add_action( 'init', 'custom_carousel_gallery_format', 4);
+    add_filter( 'option_default_post_format', 'carousel_default_format' );
+}
 
 function custom_carousel_gallery_format() {
 	add_post_type_support('carousel', 'post-formats');

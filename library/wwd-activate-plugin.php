@@ -1,5 +1,12 @@
 <?php
 
+/*
+* @Author 		Woolston Web Design
+* Copyright: 	2018 WWD Blank Slate
+*/
+
+if ( ! defined('ABSPATH')) exit;  // if direct access 
+
 function wwd_plugin_activate() {
   
     if ( !is_admin() ) {
@@ -7,7 +14,7 @@ function wwd_plugin_activate() {
     }
 
     $defaultOptions = array(
-        'custom_carousel' => true,
+        'bootstrap_carousel' => true,
         'custom_posts' => array(
             array(
                 'name' => 'layout',
