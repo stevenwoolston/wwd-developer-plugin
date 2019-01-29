@@ -15,6 +15,7 @@ function wwd_plugin_activate() {
 
     $defaultOptions = array(
         'bootstrap_carousel' => true,
+        'carousel_speed' => 10,
         'custom_posts' => array(
             array(
                 'name' => 'layout',
@@ -33,16 +34,12 @@ function wwd_plugin_activate() {
             'instagram_url' => '',
             'youtube_url' => ''
         )
-
+    
     );
-
+    
     if (!get_option('wwd-plugin')) {
         update_option('wwd-plugin', $defaultOptions);
         flush_rewrite_rules();
-    } else {
-
-        $existingOptions = get_option('wwd-plugin');
-
     }
 }
 
@@ -52,7 +49,7 @@ function wwd_plugin_deactivate() {
         return;
     }
 
-    // delete_option('wwd-plugin');
-    // flush_rewrite_rules();
+    delete_option('wwd-plugin');
+    flush_rewrite_rules();
 
 }

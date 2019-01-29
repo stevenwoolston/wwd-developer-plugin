@@ -37,6 +37,16 @@
                     </tr>
                     <tr valign="top">
                         <th scope="row">
+                            <label for="wwd-plugin[carousel_speed]">Carousel Slide Timer (secs):</label>
+                        </th>
+                        <td>
+                            <input type="text" id="google_analytics_tracking_code" size="10" 
+                                name="wwd-plugin[carousel_speed]" 
+                                value="<?php echo $options['carousel_speed']; ?>" />
+                        </td>
+                    </tr>
+                    <tr valign="top">
+                        <th scope="row">
                             <label for="custom_carousel">Custom Posts:</label>
                         </th>
                         <td>
