@@ -88,6 +88,6 @@ table.wwd-admin tbody td {
     background-color: #fff;
 }
 
-.form-table input {
+.form-table input[type="text"] {
     width: 300px;
 }
