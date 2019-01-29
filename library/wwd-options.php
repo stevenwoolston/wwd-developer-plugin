@@ -6,10 +6,6 @@
 
 if ( ! defined('ABSPATH')) exit;  // if direct access 
 
-/*  Otto    */
-
-/*  end Otto    */
-
 function wwd_add_admin_page() {
     add_menu_page( 'WWD Theme Options', 'WWD', 'manage_options', 'wwd_plugin', 'wwd_theme_create_settings_page', 'dashicons-admin-customizer', 110 );
     add_submenu_page( 'wwd_plugin',  'WWD Theme Options',  'Settings',  'manage_options',  'wwd_plugin',  'wwd_theme_create_settings_page' );
