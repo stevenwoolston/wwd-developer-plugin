@@ -8,12 +8,12 @@
 if ( ! defined('ABSPATH')) exit;  // if direct access 
 
 
-function register_my_menus() {
+function wwd_register_menus() {
     register_nav_menus(
           array(
-              'main-menu' => __( 'Main Menu', 'blankslate' )
+              'main-menu' => __( 'Main Menu', 'wwd_blankslate' )
           )
     );
-  }
-  add_action( 'init', 'register_my_menus' );
+}
+add_action( 'init', 'wwd_register_menus' );
   
