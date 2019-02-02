@@ -20,7 +20,8 @@ function wwd_plugin_activate() {
             array(
                 'name' => 'layout',
                 'label' => 'Layout',
-                'plural' => 'Layouts'
+                'plural' => 'Layouts',
+                'icon' => 'dashicons-editor-table'
             )
         ),
         'seo' => array(
