@@ -50,7 +50,7 @@ function wwd_plugin_deactivate() {
         return;
     }
 
-    delete_option('wwd-plugin');
-    flush_rewrite_rules();
+    // delete_option('wwd-plugin');
+    // flush_rewrite_rules();
 
 }

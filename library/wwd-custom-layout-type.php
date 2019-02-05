@@ -7,22 +7,9 @@
 
 if ( ! defined('ABSPATH')) exit;  // if direct access 
 
-function wwd_add_custom_post(string $name, string $label, string $pluralisedName) 
+function wwd_add_custom_post($name, $label, $pluralisedName) 
 {
-    $options = get_option('wwd-plugin');
-    if (!$options) {
-        return;
-    }
-
-    foreach($options['custom_posts'] as $post) {
-        if ($post['name'] == $name) {
-            return;
-        }
-    }
-    
-    array_push($options['custom_posts'], array("name" => $name, "label" => $label, "plural" => $pluralisedName));
-    update_option('wwd-plugin', $options);
-    flush_rewrite_rules();
+    wwd_generic_custom_layout_type($name, $label, $pluralisedName);
 }
 
 function wwd_options_custom_post_type() {
@@ -44,7 +31,7 @@ function wwd_options_custom_post_type() {
 }
 add_action( 'init', 'wwd_options_custom_post_type' );
 
-function wwd_generic_custom_layout_type($name, $label, $plural, $icon = 'dashicons-editor-table') {
+function wwd_generic_custom_layout_type($name, $label, $plural) {
 
     $labels = array(
         'name' => _x( $label, $name ),
@@ -67,7 +54,7 @@ function wwd_generic_custom_layout_type($name, $label, $plural, $icon = 'dashico
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
-        'menu_icon' => $icon,
+        'menu_icon' => 'dashicons-editor-table',
         'show_in_nav_menus' => true,
         'publicly_queryable' => true,
         'exclude_from_search' => false,
