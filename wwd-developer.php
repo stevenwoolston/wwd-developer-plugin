@@ -1,11 +1,12 @@
 <?php
 /*
 @package WWD_Developer
-@version 2.4
+@version 2.5
 
 Plugin Name: WWD Developer
 Plugin URI: https://github.com/woolstonwebdesign/wwd-developer-plugin
 Description: Woolston Web Design Developer Plugin
+Version: 2.5
 Author: Steven Woolston
 Author URI: https://www.woolston.com.au
 Text Domain: social_share_button
@@ -22,6 +23,8 @@ define("WWD_PLUGIN_BASENAME", plugin_basename(__FILE__));
 
 require_once(plugin_dir_path(__FILE__) . '/inc/wwd-config.php');
 
+require_once(plugin_dir_path(__FILE__) . '/library/wwd-activate-plugin.php');
+
 require_once(plugin_dir_path(__FILE__) . '/library/wwd-custom-layout-type.php');
 
 require_once(plugin_dir_path(__FILE__) . '/library/wwd-sitemap.php');
@@ -30,14 +33,13 @@ require_once(plugin_dir_path(__FILE__) . '/library/wwd-options.php');
 
 require_once(plugin_dir_path(__FILE__) . '/library/wwd-gallery.php');
 
-require_once(plugin_dir_path(__FILE__) . '/library/wwd-activate-plugin.php');
-
 require_once(plugin_dir_path(__FILE__) . '/library/wwd-optimisation.php');
 
 require_once(plugin_dir_path(__FILE__) . '/library/wp-bootstrap-navwalker.php');
 
 require_once(plugin_dir_path(__FILE__) . '/library/yamm-nav-walker.php');
 
+require_once(plugin_dir_path(__FILE__) . '/library/wwd-register-theme-support.php');
 
 wwd_init();
 function wwd_init() {
@@ -48,8 +50,9 @@ function wwd_init() {
 }
 
 function wwd_enqueue_assets() {
-    wp_enqueue_style('wwd-style', plugins_url('/css/wwd-global.css', __FILE__));
-    wp_enqueue_script('wwd-script', plugins_url('/js/wwd-global.js', __FILE__));
+    wp_enqueue_media();
+    wp_enqueue_style('wwd-style', plugins_url('/css/wwd-admin.css', __FILE__));
+    wp_enqueue_script('wwd-script', plugins_url('/js/wwd-admin.js', __FILE__));
 }
 
 function wwd_activation_hook() {
