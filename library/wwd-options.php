@@ -19,6 +19,18 @@ function wwd_theme_create_settings_page() {
     require_once WWD_PLUGIN_PATH . "/templates/admin.php";
 }
 
+function wwd_remove_wp_version_strings($src) {
+    //  remove version number from scripts to stop identifying which version of WP we are using
+    global $wp_version;
+    parse_str(parse_url($src, PHP_URL_QUERY), $query);
+    if (!empty($query['ver']) && $query['ver'] === $wp_version) {
+        $src = remove_query_arg('ver');
+    }
+    return $src;
+}
+add_filter("script_loader_src", 'wwd_remove_wp_version_strings');
+add_filter("style_loader_src", 'wwd_remove_wp_version_strings');
+
 /*
 add_action( 'admin_menu', 'wwd_add_options_page' );
 function wwd_add_options_page() {
