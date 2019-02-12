@@ -28,6 +28,9 @@ function wwd_plugin_activate() {
             'meta_description' => '',
             'google_analytics_tracking_code' => ''
         ), 
+        'theme_options' => array(
+            'post_formats' => array()
+        ),
         'social_media' => array(
             'facebook_url' => '',
             'twitter_url' => '',
@@ -50,7 +53,7 @@ function wwd_plugin_deactivate() {
         return;
     }
 
-    // delete_option('wwd-plugin');
-    // flush_rewrite_rules();
+    delete_option('wwd-plugin');
+    flush_rewrite_rules();
 
 }

@@ -17,6 +17,9 @@
                 <a href="#tab-4">Social Media</a>
             </li>
             <li>
+                <a href="#tab-theme">Theme Options</a>
+            </li>
+            <li>
                 <a href="#tab-3">About</a>
             </li>
         </ul>
@@ -120,6 +123,32 @@
                 Woolston Web Design<br />
                 Contact: 0407 077 508<br />
                 Email: <a href="mailto:design@woolston.comm.au">design@woolston.comm.au</a>
+            </div>
+
+            <div id="tab-theme" class="tab-pane">
+                <h2>Theme Options</h2>
+
+                <table class="form-table">
+                    <tr valign="top">
+                        <th scope="row">
+                            <label>Post Formats</label>
+                        </th>
+                        <td>
+<?php
+    $formats = array('aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat');
+    $output = '';
+    foreach($formats as $format) {
+        $checked = (@$options['theme_options']['post_formats'][$format] == 1 ? 'checked' : '');
+?>
+        <label><input type="checkbox" <?php echo $checked; ?> name="wwd-plugin[theme_options][post_formats][<?php echo $format; ?>]" 
+            value="1"><?php echo $format; ?></label>
+        <br />
+<?php    
+    }    
+?>
+                        </td>
+                    </tr>
+                </table>
             </div>
 
             <div id="tab-4" class="tab-pane">
