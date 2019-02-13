@@ -1,7 +1,7 @@
 <?php
 /*
 @package WWD_Developer
-@version 2.5
+@version 2.6
 
 Plugin Name: WWD Developer
 Plugin URI: https://github.com/woolstonwebdesign/wwd-developer-plugin
