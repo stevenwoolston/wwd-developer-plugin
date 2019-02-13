@@ -6,7 +6,7 @@
 Plugin Name: WWD Developer
 Plugin URI: https://github.com/woolstonwebdesign/wwd-developer-plugin
 Description: Woolston Web Design Developer Plugin
-Version: 2.5
+Version: 2.6
 Author: Steven Woolston
 Author URI: https://www.woolston.com.au
 Text Domain: social_share_button
