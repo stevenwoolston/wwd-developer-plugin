@@ -13,9 +13,11 @@ function wwd_plugin_activate() {
         return;
     }
 
-    $defaultOptions = array(
+    $default_options = array(
+        'use_custom_header' => false,
         'bootstrap_carousel' => true,
         'carousel_speed' => 10,
+        'use_custom_background' => false,
         'custom_posts' => array(
             array(
                 'name' => 'layout',
@@ -41,10 +43,14 @@ function wwd_plugin_activate() {
     
     );
     
-    if (!get_option('wwd-plugin')) {
-        update_option('wwd-plugin', $defaultOptions);
-        flush_rewrite_rules();
-    }
+    $wwd_options = get_option('wwd-plugin');
+    $new_options = $default_options + $wwd_options;
+    update_option('wwd-plugin', $default_options);
+    flush_rewrite_rules();
+    
+    // if (!get_option('wwd-plugin')) {
+    //     update_option('wwd-plugin', $defaultOptions);
+    // }
 }
 
 function wwd_plugin_deactivate() {
@@ -53,7 +59,7 @@ function wwd_plugin_deactivate() {
         return;
     }
 
-    delete_option('wwd-plugin');
-    flush_rewrite_rules();
+    // delete_option('wwd-plugin');
+    // flush_rewrite_rules();
 
 }

@@ -18,3 +18,13 @@ if (!empty($options)) {
 
     add_theme_support('post-formats', $output);
 }
+
+$custom_header = $options['use_custom_header'];
+if ($custom_header == 1) {
+    add_theme_support('custom-header');
+}
+
+$custom_background = $options['use_custom_background'];
+if ($custom_background == 1) {
+    add_theme_support('custom-background');
+}
