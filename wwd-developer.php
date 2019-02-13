@@ -51,8 +51,8 @@ function wwd_init() {
 
 function wwd_enqueue_assets() {
     wp_enqueue_media();
-    wp_enqueue_style('wwd-style', plugins_url('/css/wwd-admin.css', __FILE__));
-    wp_enqueue_script('wwd-script', plugins_url('/js/wwd-admin.js', __FILE__));
+    wp_enqueue_style('wwd-developer-style', plugin_dir_url(__FILE__) . '/css/wwd-admin.css', array(), '1.0', 'all');
+    wp_enqueue_script('wwd-developer-script', plugin_dir_url(__FILE__) . '/js/wwd-admin.js', array('jquery'), '1.0', true);
 }
 
 function wwd_activation_hook() {

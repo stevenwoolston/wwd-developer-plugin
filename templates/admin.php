@@ -2,7 +2,6 @@
     <h1>Woolston Web Design Options</h1>
     <?php settings_errors(); ?>
 
-
     <form action="options.php" method="post">
     <?php settings_fields('wwd-plugin-options'); ?>
 
@@ -27,6 +26,28 @@
         <div class="tab-content">
             <div id="tab-1" class="tab-pane active">
                 <table class="form-table">
+                    <tr valign="top">
+                        <th scope="row">
+                            <label for="wwd-plugin[use_custom_header]">Use Custom Header:</label>
+                        </th>
+                        <td>
+                            <select name="wwd-plugin[use_custom_header]">
+                                <option value="0" <?php echo ($options['use_custom_header'] == 0 ? "selected" : ""); ?>>No</option>
+                                <option value="1" <?php echo ($options['use_custom_header'] == 1 ? "selected" : ""); ?>>Yes</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr valign="top">
+                        <th scope="row">
+                            <label for="wwd-plugin[use_custom_background]">Use Custom Background:</label>
+                        </th>
+                        <td>
+                            <select name="wwd-plugin[use_custom_background]">
+                                <option value="0" <?php echo ($options['use_custom_background'] == 0 ? "selected" : ""); ?>>No</option>
+                                <option value="1" <?php echo ($options['use_custom_background'] == 1 ? "selected" : ""); ?>>Yes</option>
+                            </select>
+                        </td>
+                    </tr>
                     <tr valign="top">
                         <th scope="row">
                             <label for="wwd-plugin[bootstrap_carousel]">Use Custom Carousel:</label>
