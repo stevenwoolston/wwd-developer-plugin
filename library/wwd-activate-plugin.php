@@ -44,7 +44,7 @@ function wwd_plugin_activate() {
     );
     
     $wwd_options = get_option('wwd-plugin');
-    $new_options = $default_options + $wwd_options;
+    $new_options = $default_options + (is_array($wwd_options) ? $wwd_options : array());
     update_option('wwd-plugin', $default_options);
     flush_rewrite_rules();
     
