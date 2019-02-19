@@ -1,8 +1,6 @@
 <?php
-
 /*
-* @Author 		Woolston Web Design
-* Copyright: 	2018 WWD Blank Slate
+@package Woolston Web Design Developer Plugin
 */
 
 if ( ! defined('ABSPATH')) exit;  // if direct access 

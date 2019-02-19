@@ -29,7 +29,7 @@ require_once(plugin_dir_path(__FILE__) . '/library/wwd-custom-layout-type.php');
 
 require_once(plugin_dir_path(__FILE__) . '/library/wwd-sitemap.php');
 
-require_once(plugin_dir_path(__FILE__) . '/library/wwd-options.php');
+require_once(plugin_dir_path(__FILE__) . '/library/wwd-admin-options.php');
 
 require_once(plugin_dir_path(__FILE__) . '/library/wwd-gallery.php');
 
@@ -40,6 +40,8 @@ require_once(plugin_dir_path(__FILE__) . '/library/wp-bootstrap-navwalker.php');
 require_once(plugin_dir_path(__FILE__) . '/library/yamm-nav-walker.php');
 
 require_once(plugin_dir_path(__FILE__) . '/library/wwd-register-theme-support.php');
+
+require_once(plugin_dir_path(__FILE__) . '/library/wwd-theme-functions.php');
 
 wwd_init();
 function wwd_init() {
