@@ -1,6 +1,6 @@
 window.addEventListener("load", function() {
 
-    var tabs = document.querySelectorAll("ul.nav-tabs > li");
+    var tabs = document.querySelectorAll(".nav-tab-wrapper a");
    
     for(var i = 0; i < tabs.length; i++) {
         tabs[i].addEventListener("click", switchTab);
@@ -9,14 +9,14 @@ window.addEventListener("load", function() {
     function switchTab(event) {
         event.preventDefault();
         
-        document.querySelector("ul.nav-tabs li.active").classList.remove("active");
+        document.querySelector(".nav-tab-active").classList.remove("nav-tab-active");
         document.querySelector(".tab-pane.active").classList.remove("active");
 
         var clickedTab = event.currentTarget;
         var anchor = event.target;
         var activePaneId = anchor.getAttribute("href");
 
-        clickedTab.classList.add("active");
+        clickedTab.classList.add("nav-tab-active");
         document.querySelector(activePaneId).classList.add("active");
     }
 
