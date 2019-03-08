@@ -1,6 +1,11 @@
 <?php
-/*  SEO Sitemaps    */
-/* function to create sitemap.xml file in root directory of site  */
+/*
+@package Woolston Web Design Developer Plugin
+
+**  SEO Sitemaps
+**  Function to create sitemap.xml file in root directory of site
+*/
+
 
 if ( ! defined('ABSPATH')) exit;  // if direct access 
 
