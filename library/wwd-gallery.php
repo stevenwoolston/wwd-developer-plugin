@@ -8,28 +8,43 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 $use_custom_gallery = get_option("wwd-plugin")['bootstrap_carousel'];
 if ($use_custom_gallery == 1) {
     //  only set this up if the option is selected
+    add_image_size('wwd-gallery-image', 600, 600);
     add_filter('post_gallery','wwd_gallery', 10, 2);
-    add_action( 'init', 'custom_carousel_gallery_format', 4);
-    add_filter( 'option_default_post_format', 'carousel_default_format' );
+    add_action('init', 'custom_carousel_gallery_format', 4);
+    add_filter('option_default_post_format', 'carousel_default_format');
+    add_filter('image_size_names_choose', 'wwd_add_carousel_image_size');
+}
+
+function wwd_add_carousel_image_size($sizes) {
+    $wwd_image_sizes = array(
+        "wwd-gallery-image" => __( "Custom Carousel Size" )
+    );
+    return array_merge($sizes, $wwd_image_sizes);
 }
 
 function custom_carousel_gallery_format() {
-	add_post_type_support('carousel', 'post-formats');
-	register_taxonomy_for_object_type('post-format', 'carousel');
+    add_post_type_support('carousel', 'post-formats');
+    register_taxonomy_for_object_type('post-format', 'carousel');
 }
 
-/**
- * Posts of post_type_1 will be asides by default, but all other post types
- * will be the default set on the Settings > Writing admin panel
- */
 function carousel_default_format( $format ) {
+    //  override the default post format for carousel post type
     global $post_type;
 
-    return ( 'carousel' === $post_type ? 'gallery' : $format );
+    switch($post_type) {
+        case 'carousel':
+            $format = 'gallery';
+            break;
+    }
+    return $format;
 }
 
-function wwd_gallery($string,$attr){
-
+function wwd_gallery($string, $attr){
+    
+    if ($attr["size"] != "wwd-gallery-image") {
+        return;
+    }
+    
     $posts_order_string = $attr['ids'];
     $posts_order = explode(',', $posts_order_string);
 
