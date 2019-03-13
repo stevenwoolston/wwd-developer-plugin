@@ -39,12 +39,41 @@ function carousel_default_format( $format ) {
     return $format;
 }
 
-function wwd_gallery($string, $attr){
+function wwd_gallery($string, $attr) {
     
-    if ($attr["size"] != "wwd-gallery-image") {
-        return;
+    if ($attr["size"] == "wwd-gallery-image") {
+        return wwd_carousel($attr);
     }
-    
+    return wwd_thumbnail_grid($attr);
+}
+
+/*  Image gallery thumbnails    */
+function wwd_thumbnail_grid($attr) {
+    $posts_order_string = $attr['ids'];
+    $posts_order = explode(',', $posts_order_string);
+
+    $posts = get_posts(array(
+        'include' => $posts_order,
+        'post_type' => 'attachment', 
+        'orderby' => 'post__in'
+    ));
+
+    $output = "<div class='gallery-thumbnail-grid'>";
+    foreach($posts as $imagePost){
+        $output .= "<div class='thumbnail-item'>";
+        $output .= "    <a href=" . wp_get_attachment_image_src($imagePost->ID, 'large')[0] . " target='_blank'>";
+        $output .= "        <img src=" . wp_get_attachment_image_src($imagePost->ID, 'thumbnail')[0] . " alt='' />";
+        $output .= "    </a>";
+        $output .= "    <div class='text-overlay'>" . $imagePost->post_excerpt . "</div>";
+        $output .= "</div>";
+    }
+    $output .= "</div>";
+    return $output;
+}
+
+/*  Image gallery Bootstrap carousel   */
+function wwd_carousel($attr) {
+
     $posts_order_string = $attr['ids'];
     $posts_order = explode(',', $posts_order_string);
 
@@ -97,5 +126,3 @@ function wwd_gallery($string, $attr){
 
     return $output;
 }
-
-?>
