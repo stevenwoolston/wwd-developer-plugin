@@ -62,7 +62,7 @@ function wwd_thumbnail_grid($attr) {
     foreach($posts as $imagePost){
         $output .= "<div class='thumbnail-item'>";
         $output .= "    <a href=" . wp_get_attachment_image_src($imagePost->ID, 'large')[0] . " target='_blank'>";
-        $output .= "        <img src=" . wp_get_attachment_image_src($imagePost->ID, 'thumbnail')[0] . " alt='' />";
+        $output .= "        <img src=" . wp_get_attachment_image_src($imagePost->ID, 'medium')[0] . " alt='' />";
         $output .= "    </a>";
         $output .= "    <div class='text-overlay'>" . $imagePost->post_excerpt . "</div>";
         $output .= "</div>";
