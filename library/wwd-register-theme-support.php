@@ -35,9 +35,9 @@ add_action( 'after_setup_theme', 'wwd_register_menus' );
 function wwd_widget_setup() {
     register_sidebar(
         array(
-            'name' => 'Site Wide Sidebar',
-            'id' => 'global-sidebar',
-            'class' => 'wwd-sidebar',
+            'name' => 'WWD Theme Sidebar',
+            'id' => 'wwd-theme-sidebar',
+            'class' => 'wwd-theme-sidebar',
             'description' => 'Standard Sidebar',
             'before_widget' => '<aside id="%1$s" class="widget %2$s">',
             'after_widget' => '</aside>',
