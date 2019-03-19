@@ -35,9 +35,9 @@ add_action( 'after_setup_theme', 'wwd_register_menus' );
 function wwd_widget_setup() {
     register_sidebar(
         array(
-            'name' => 'WWD Theme Sidebar',
-            'id' => 'wwd-theme-sidebar',
-            'class' => 'wwd-theme-sidebar',
+            'name' => 'Site Wide Sidebar',
+            'id' => 'global-sidebar',
+            'class' => 'wwd-sidebar',
             'description' => 'Standard Sidebar',
             'before_widget' => '<aside id="%1$s" class="widget %2$s">',
             'after_widget' => '</aside>',
@@ -47,3 +47,14 @@ function wwd_widget_setup() {
     );
 }
 add_action('widgets_init', 'wwd_widget_setup');
+
+function wwd_wp_title( $title, $sep ) {
+    if ( is_404() ) {
+        return "Nothing Found" . " - " . $blog_title;
+    } else if ( !is_home() ) {
+        return get_the_title() . " - " . $blog_title;
+    } else {
+        return $blog_title;
+    }
+}
+add_filter( 'wp_title', 'wwd_wp_title', 10, 2 );
