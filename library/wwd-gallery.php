@@ -78,7 +78,7 @@ function wwd_carousel($attr) {
     $posts_order = explode(',', $posts_order_string);
 
     $output = "<div class='col-xs-12 gallery-container'>";
-    $output .= "<div id='carousel-example-generic' class='carousel slide' data-ride='carousel' data-interval='" . get_option( "carousel_speed" ) . "000'>";
+    $output .= "<div id='carousel-example-generic' class='carousel slide' data-ride='carousel' data-interval='" . get_option("wwd-plugin")["carousel_speed"] . "000'>";
 
     $posts = get_posts(array(
           'include' => $posts_order,
