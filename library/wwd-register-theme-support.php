@@ -22,6 +22,11 @@ if ($custom_header == 1) {
     add_theme_support('custom-header');
 }
 
+$custom_footer = $options['use_custom_footer'];
+if ($custom_footer == 1) {
+    add_theme_support('custom-footer');
+}
+
 $custom_background = $options['use_custom_background'];
 if ($custom_background == 1) {
     add_theme_support('custom-background');

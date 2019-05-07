@@ -13,6 +13,7 @@ function wwd_plugin_activate() {
 
     $default_options = array(
         'use_custom_header' => false,
+        'use_custom_footer' => false,
         'bootstrap_carousel' => true,
         'carousel_speed' => 10,
         'use_custom_background' => false,

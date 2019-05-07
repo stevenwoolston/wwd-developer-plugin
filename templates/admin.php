@@ -28,6 +28,17 @@
                 </tr>
                 <tr>
                     <th scope="row">
+                        <label for="wwd-plugin[use_custom_footer]">Use Custom Footer:</label>
+                    </th>
+                    <td>
+                        <select name="wwd-plugin[use_custom_footer]">
+                            <option value="0" <?php echo ($options['use_custom_footer'] == 0 ? "selected" : ""); ?>>No</option>
+                            <option value="1" <?php echo ($options['use_custom_footer'] == 1 ? "selected" : ""); ?>>Yes</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
                         <label for="wwd-plugin[use_custom_background]">Use Custom Background:</label>
                     </th>
                     <td>
