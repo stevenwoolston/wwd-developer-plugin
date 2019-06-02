@@ -37,6 +37,8 @@ require_once(plugin_dir_path(__FILE__) . '/library/wwd-optimisation.php');
 
 require_once(plugin_dir_path(__FILE__) . '/library/wp-bootstrap-navwalker.php');
 
+require_once(plugin_dir_path(__FILE__) . '/library/wp-navwalker-dropdown.php');
+
 require_once(plugin_dir_path(__FILE__) . '/library/yamm-nav-walker.php');
 
 require_once(plugin_dir_path(__FILE__) . '/library/wwd-register-theme-support.php');
