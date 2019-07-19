@@ -5,7 +5,7 @@
     <form action="options.php" method="post">
     <?php settings_fields('wwd-plugin-options'); ?>
 
-        <h2 class="nav-tab-wrapper">
+        <h2 class="wwd-nav-tab-wrapper">
             <a href="#tab-1" class="nav-tab nav-tab-active">Manage Settings</a>
             <a href="#tab-2" class="nav-tab">SEO</a>
             <a href="#tab-4" class="nav-tab">Social Media</a>

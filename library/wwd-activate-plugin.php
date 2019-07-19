@@ -17,14 +17,7 @@ function wwd_plugin_activate() {
         'bootstrap_carousel' => true,
         'carousel_speed' => 10,
         'use_custom_background' => false,
-        'custom_posts' => array(
-            array(
-                'name' => 'layout',
-                'label' => 'Layout',
-                'plural' => 'Layouts',
-                'icon' => 'dashicons-editor-table'
-            )
-        ),
+        'custom_posts' => array(),
         'seo' => array(
             'meta_description' => '',
             'google_analytics_tracking_code' => ''
