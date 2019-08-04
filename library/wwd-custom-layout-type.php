@@ -52,6 +52,7 @@ function wwd_generic_custom_layout_type($name, $label, $plural, $icon = 'dashico
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
+        'show_in_rest' => true,
         'menu_icon' => $icon,
         'show_in_nav_menus' => true,
         'publicly_queryable' => true,

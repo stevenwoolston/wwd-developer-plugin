@@ -1,14 +1,14 @@
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
 
-    var tabs = document.querySelectorAll(".nav-tab-wrapper a");
-   
-    for(var i = 0; i < tabs.length; i++) {
+    var tabs = document.querySelectorAll(".wwd-nav-tab-wrapper a");
+
+    for (var i = 0; i < tabs.length; i++) {
         tabs[i].addEventListener("click", switchTab);
     }
 
     function switchTab(event) {
         event.preventDefault();
-        
+
         document.querySelector(".nav-tab-active").classList.remove("nav-tab-active");
         document.querySelector(".tab-pane.active").classList.remove("active");
 

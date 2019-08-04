@@ -22,6 +22,11 @@ if ($custom_header == 1) {
     add_theme_support('custom-header');
 }
 
+$custom_footer = $options['use_custom_footer'];
+if ($custom_footer == 1) {
+    add_theme_support('custom-footer');
+}
+
 $custom_background = $options['use_custom_background'];
 if ($custom_background == 1) {
     add_theme_support('custom-background');
@@ -47,3 +52,14 @@ function wwd_widget_setup() {
     );
 }
 add_action('widgets_init', 'wwd_widget_setup');
+
+function wwd_wp_title( $title, $sep ) {
+    if ( is_404() ) {
+        return "Nothing Found" . " - " . $blog_title;
+    } else if ( !is_home() ) {
+        return get_the_title() . " - " . $blog_title;
+    } else {
+        return $blog_title;
+    }
+}
+add_filter( 'wp_title', 'wwd_wp_title', 10, 2 );

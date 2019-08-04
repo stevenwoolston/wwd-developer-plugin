@@ -8,33 +8,77 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 $use_custom_gallery = get_option("wwd-plugin")['bootstrap_carousel'];
 if ($use_custom_gallery == 1) {
     //  only set this up if the option is selected
+    add_image_size('wwd-gallery-image', 600, 600);
     add_filter('post_gallery','wwd_gallery', 10, 2);
-    add_action( 'init', 'custom_carousel_gallery_format', 4);
-    add_filter( 'option_default_post_format', 'carousel_default_format' );
+    add_action('init', 'custom_carousel_gallery_format', 4);
+    add_filter('option_default_post_format', 'carousel_default_format');
+    add_filter('image_size_names_choose', 'wwd_add_carousel_image_size');
+}
+
+function wwd_add_carousel_image_size($sizes) {
+    $wwd_image_sizes = array(
+        "wwd-gallery-image" => __( "Custom Carousel Size" )
+    );
+    return array_merge($sizes, $wwd_image_sizes);
 }
 
 function custom_carousel_gallery_format() {
-	add_post_type_support('carousel', 'post-formats');
-	register_taxonomy_for_object_type('post-format', 'carousel');
+    add_post_type_support('carousel', 'post-formats');
+    register_taxonomy_for_object_type('post-format', 'carousel');
 }
 
-/**
- * Posts of post_type_1 will be asides by default, but all other post types
- * will be the default set on the Settings > Writing admin panel
- */
 function carousel_default_format( $format ) {
+    //  override the default post format for carousel post type
     global $post_type;
 
-    return ( 'carousel' === $post_type ? 'gallery' : $format );
+    switch($post_type) {
+        case 'carousel':
+            $format = 'gallery';
+            break;
+    }
+    return $format;
 }
 
-function wwd_gallery($string,$attr){
+function wwd_gallery($string, $attr) {
+    
+    if ($attr["size"] == "wwd-gallery-image") {
+        return wwd_carousel($attr);
+    }
+    return wwd_thumbnail_grid($attr);
+}
+
+/*  Image gallery thumbnails    */
+function wwd_thumbnail_grid($attr) {
+    $posts_order_string = $attr['ids'];
+    $posts_order = explode(',', $posts_order_string);
+
+    $posts = get_posts(array(
+        'include' => $posts_order,
+        'post_type' => 'attachment', 
+        'orderby' => 'post__in'
+    ));
+
+    $output = "<div class='gallery-thumbnail-grid'>";
+    foreach($posts as $imagePost){
+        $output .= "<div class='thumbnail-item'>";
+        $output .= "    <a href=" . wp_get_attachment_image_src($imagePost->ID, 'large')[0] . " target='_blank'>";
+        $output .= "        <img src=" . wp_get_attachment_image_src($imagePost->ID, 'medium')[0] . " alt='' />";
+        $output .= "    </a>";
+        $output .= "    <div class='text-overlay'>" . $imagePost->post_excerpt . "</div>";
+        $output .= "</div>";
+    }
+    $output .= "</div>";
+    return $output;
+}
+
+/*  Image gallery Bootstrap carousel   */
+function wwd_carousel($attr) {
 
     $posts_order_string = $attr['ids'];
     $posts_order = explode(',', $posts_order_string);
 
     $output = "<div class='col-xs-12 gallery-container'>";
-    $output .= "<div id='carousel-example-generic' class='carousel slide' data-ride='carousel' data-interval='" . get_option( "carousel_speed" ) . "000'>";
+    $output .= "<div id='carousel-example-generic' class='carousel slide' data-ride='carousel' data-interval='" . get_option("wwd-plugin")["carousel_speed"] . "000'>";
 
     $posts = get_posts(array(
           'include' => $posts_order,
@@ -82,5 +126,3 @@ function wwd_gallery($string,$attr){
 
     return $output;
 }
-
-?>
