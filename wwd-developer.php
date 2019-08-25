@@ -6,12 +6,13 @@
 Plugin Name: WWD Developer
 Plugin URI: https://github.com/woolstonwebdesign/wwd-developer-plugin
 Description: Woolston Web Design Developer Plugin
-Version: 2.9
+Version: 2.10
 Author: Steven Woolston
 Author URI: https://www.woolston.com.au
 Text Domain: social_share_button
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+GitHub Plugin URI: https://github.com/woolstonwebdesign/wwd-developer-plugin
 */
 
 if ( !defined( 'ABSPATH' ) ) {
